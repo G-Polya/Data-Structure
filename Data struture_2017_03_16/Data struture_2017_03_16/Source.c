@@ -51,7 +51,7 @@ int main()
 		}
 	}
 
-	a	return 0;
+	return 0;
 
 }
 
@@ -166,10 +166,16 @@ void write_record(char *fname)
 	int i = 0;
 	FILE *ifp = fopen(fname, "r");
 	FILE *ofp = fopen(fname, "w+");
+	char grade[10];
 
 	while (fscanf(ifp, "%s %d %s", r[i].name, &r[i].id, r[i].grade) == 3)
 	{
-
+		fprintf(ofp, "%s %d %s\n", r[i].name, &r[i].id, r[i].grade);
 		i++;
 	}
+
+	fclose(ifp);
+	fclose(ofp);
+
+	printf("\n4 records have written to grade.txt\n");
 }
