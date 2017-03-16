@@ -163,17 +163,15 @@ void change_record()
 
 void write_record(char *fname)
 {
-	int i = 0;
 	FILE *ifp = fopen(fname, "r");
 	FILE *ofp = fopen(fname, "w+");
-	char grade[10];
-
-	while (fscanf(ifp, "%s %d %s", r[i].name, &r[i].id, r[i].grade) == 3)
+	
+	
+	for (int i = 0; i < num_record; i++)
 	{
-		fprintf(ofp, "%s %d %s\n", r[i].name, &r[i].id, r[i].grade);
-		i++;
-	}
+		fprintf(ofp, "%s %d %d", r[i].name, r[i].id, r[i].grade);
 
+	}
 	fclose(ifp);
 	fclose(ofp);
 
