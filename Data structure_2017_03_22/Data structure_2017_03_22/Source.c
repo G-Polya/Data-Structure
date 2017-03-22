@@ -94,15 +94,18 @@ void list_delete(Element e)
 			List[0] = List[1];
 			List[1] = List[2];
 			List[2] = NULL;
+			size--;
 		}
 		else if (List[1] == e)
 		{
 			List[1] = List[2];
 			List[2] = NULL;
+			size--;
 		}
 		else if (List[2] == e)
 		{
 			List[2] = NULL;
+			size--;
 		}
 
 		else if (List[0] != e && List[1] != e &&List[2] != e)
@@ -115,4 +118,7 @@ void list_show(Element *L)
 	printf("\n");
 	for (int i = 0; i < size; i++)
 		printf("%c   ", L[i]);
+
+	if (size == 0)
+		printf("\nList is Empty!!\n");
 }
