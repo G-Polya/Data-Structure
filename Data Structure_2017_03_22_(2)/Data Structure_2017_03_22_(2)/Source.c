@@ -31,14 +31,14 @@ int main()
 	return 0;
 }
 
-void matrix_init(int a[ROW][COL])
+void matrix_init(int a[ROW][COL])			//matrix 초기화
 {
 	for (int i = 0; i < ROW; i++)
 		for (int j = 0; j < COL; j++)
 			a[i][j] = 0;
 }
 
-void matrix_add(int a[ROW][COL], int b[ROW][COL], int c[ROW][COL])
+void matrix_add(int a[ROW][COL], int b[ROW][COL], int c[ROW][COL])			//matrix끼리 더하기 == 같은 위치의 원소끼리 더하기
 {
 	printf("\na + b = \n");
 	for(int i = 0; i<ROW;i++)
@@ -48,7 +48,7 @@ void matrix_add(int a[ROW][COL], int b[ROW][COL], int c[ROW][COL])
 		}
 }
 
-void matrix_mult(int a[ROW][COL], int b[ROW][COL], int c[ROW][COL])
+void matrix_mult(int a[ROW][COL], int b[ROW][COL], int c[ROW][COL])		//matrix 곱하기. (i x k) * (k x j) = i x j
 {
 	printf("\na * b = \n");
 	for (int i = 0; i < ROW; i++)		//i x k
@@ -64,7 +64,7 @@ void matrix_mult(int a[ROW][COL], int b[ROW][COL], int c[ROW][COL])
 }
 
 
-void matrix_transpose(int a[ROW][COL],int c[ROW][COL])
+void matrix_transpose(int a[ROW][COL],int c[ROW][COL])				//전치행렬 구하기.
 {
 	printf("\na transpose = \n");
 
