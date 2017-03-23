@@ -38,5 +38,11 @@ void matrix_add(int a[ROW][COL], int b[ROW][COL], int c[ROW][COL])
 
 void matrix_mult(int a[ROW][COL], int b[ROW][COL], int c[ROW][COL])
 {
+	for (int i = 0; i < ROW; i++)
+	{
+		for (int j = 0; j < COL; j++)
+		{
 
+		}
+	}
 }
