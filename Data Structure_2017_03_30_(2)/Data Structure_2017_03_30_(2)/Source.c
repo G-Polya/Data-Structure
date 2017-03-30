@@ -72,6 +72,8 @@ boolean is_op(char c)					//입력이 연산자인지 확인
 
 int eval_postfix(char *exp)				//후위표기연산
 {
+
+
 	int i = 0;
 	char op, op2, op1;					
 	char token = exp[0];				//초기입력값
