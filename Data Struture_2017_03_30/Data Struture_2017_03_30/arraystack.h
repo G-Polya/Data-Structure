@@ -5,8 +5,8 @@
 #define false 0
 typedef char Element;
 // Global stack
-Element stack[MAX_SIZE];
-int top = -1;
+Element stack[MAX_SIZE];				//stackarray
+int top = -1;		
 void stack_full();
 void stack_empty();
 void push(Element e);
