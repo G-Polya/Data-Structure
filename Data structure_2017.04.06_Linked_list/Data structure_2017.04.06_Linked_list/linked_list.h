@@ -5,12 +5,14 @@
 #define true 1
 #define false 0
 
-typedef struct list_node *list_pointer;
-typedef struct
+typedef struct list_node* list_pointer;
+
+typedef struct list_node
 {
 	Element data;
 	list_pointer link;
 } list_node;
+
 
 void list_insert(list_pointer head, Element e);
 void list_delete(list_pointer head, Element e);
