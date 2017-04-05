@@ -3,7 +3,7 @@
 #include <ctype.h>
 #include <stdlib.h>
 #include <string.h>
-#include "circularQ.h"
+#include "QueueArray.h"
 
 int main()
 {
@@ -22,7 +22,7 @@ int main()
 			AddQ(e);
 			break;
 		case '-':
-			e = DeleteQ();
+			e = deleteQ();
 			printf("\n %c \n", e);
 			break;
 		case 'S':
@@ -32,11 +32,7 @@ int main()
 			printf("\n");
 			exit(1);
 		default: break;
-
-
-
-		}
-
+		}		
 	}
 	return 0;
 }
@@ -47,8 +43,6 @@ void Q_isFull()
 	printf("\nQueue is Full!!!\n");
 }
 
-
-
 void Q_isEmpty()
 {
 	printf("\nQueue is Empty!!!\n");
@@ -56,30 +50,24 @@ void Q_isEmpty()
 
 void AddQ(char item)
 {
-	if (front == (rear+1)%Q_size)
+	if (rear == Q_size - 1)
 	{
 		Q_isFull();
 		return;
 	}
 	else
-	{
-		rear = (rear + 1) % Q_size;
-		QueueArray[rear] = item;
-	}
+		QueueArray[++rear] = item;
 }
 
-char DeleteQ()
+Element deleteQ()
 {
-	if (front == rear + 1)
+	if (front == rear)
 	{
 		Q_isEmpty();
 		return;
 	}
 	else
-	{
-		front = (front + 1) % Q_size;
-		return QueueArray[front];
-	}
+		return QueueArray[++front];
 }
 
 void Queue_show()
