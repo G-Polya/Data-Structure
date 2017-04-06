@@ -52,15 +52,15 @@ void Q_isEmpty()
 
 void AddQ(char item)
 {
-	if (front == (rear+1)%Q_size)
+	if (front == (rear + 1) % Q_size)
 	{
 		Q_isFull();
 		return;
 	}
 	else
 	{
-	//	rear = (rear + 1) % Q_size;
-	
+		//	rear = (rear + 1) % Q_size;
+
 		//QueueArray[rear] = item;
 		QueueArray[++rear] = item;
 		printf("\nRear: %d, Front: %d\n", rear, front);
@@ -70,7 +70,7 @@ void AddQ(char item)
 
 char DeleteQ()
 {
-	if (front == rear )
+	if (front == rear)
 	{
 		Q_isEmpty();
 		return;
@@ -78,7 +78,7 @@ char DeleteQ()
 	else
 	{
 		//front = (front + 1) % Q_size;
-	
+
 		//return QueueArray[front];
 		return QueueArray[++front];
 		printf("Rear: %d, Front: %d\n", rear, front);
@@ -89,15 +89,15 @@ char DeleteQ()
 void Queue_show()
 {
 	printf("\n");
-	
-		for (int i = front + 1; i <= rear+1; i++)
-		{
-			printf("%c ", QueueArray[i]);
-		}
+
+	for (int i = front + 1; i <= rear + 1; i++)
+	{
+		printf("%c ", QueueArray[i]);
+	}
 
 	/*	if (front > rear)
-		{
-			rear += Q_size;
+	{
+	rear += Q_size;
 	}*/
 
 }
