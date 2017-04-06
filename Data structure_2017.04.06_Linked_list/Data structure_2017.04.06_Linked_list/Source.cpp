@@ -71,19 +71,19 @@ list_pointer list_search(list_pointer head, Element e)
 
 void list_delete(list_pointer head, Element e)
 {
-	list_pointer node = head->link;
-	list_pointer temp = 0;
+	list_pointer node = head;
+	list_pointer temp = (list_pointer)malloc(sizeof(list_node));
 	while (node->link)
 	{
 		if (node->link->data == e)
 		{
 			temp = node->link;
 			node->link = node->link->link;
-			free(temp);
+			break;
 		}
 		node = node->link;
 	}
-	
+	free(temp);
 }
 
 bool list_empty(list_pointer head)
