@@ -52,36 +52,34 @@ void Q_isEmpty()
 
 void AddQ(char item)
 {
-	if (front == (rear+1)%Q_size)
+	if (front == (rear + 1) % Q_size)
 	{
 		Q_isFull();
 		return;
 	}
-	else
+	else	
 	{
-		rear = (rear + 1) % Q_size;
-		QueueArray[rear] = item;
+		QueueArray[++rear] = item;
 	}
 }
 
 char DeleteQ()
 {
-	if (front == rear + 1)
+	if (front == rear )
 	{
 		Q_isEmpty();
 		return;
 	}
 	else
 	{
-		front = (front + 1) % Q_size;
-		return QueueArray[front];
+		return QueueArray[++front];
 	}
 }
 
 void Queue_show()
 {
 	printf("\n");
-	for (int i = front+1 ; i <= rear; i++)
+	for (int i = front + 1; i <= rear; i++)
 	{
 		printf(" %c ", QueueArray[i]);
 	}

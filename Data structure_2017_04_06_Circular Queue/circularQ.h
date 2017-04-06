@@ -1,6 +1,6 @@
 #pragma once
 
-#define Q_size 10
+#define Q_size 4
 #define boolean unsigned char
 #define true 1
 #define false 0
@@ -14,5 +14,5 @@ void Q_isFull();
 void Q_isEmpty();
 void Queue_show();
 
-int rear = -1;
-int front = -1;
+int rear = 0;
+int front = 0;
