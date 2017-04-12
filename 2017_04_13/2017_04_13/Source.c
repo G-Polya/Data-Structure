@@ -52,7 +52,7 @@ void addq(Element e)
 	temp->item = e;
 	temp->link = NULL;
 
-	if (front == NULL)					//queue가 비어있으면
+	if (is_queue_empty())					//queue가 비어있으면
 	{
 		front = rear = temp;					//queue의 처음 원소로 삽입
 	}

@@ -38,6 +38,9 @@ void main()
 		++current_time;
 	}
 	// 통계 자료 출력 - 완료된 프린트 job 수, 평균 지연 시간 (total_wait_time/num_printed_jobs)
+
+	printf("완료된 프린트 job = %d 개\n", num_printed_jobs);
+	printf("평균 지연 시간    = %lf 단위시간\n", (double)total_wait_time/(double)num_printed_jobs);
 }
 
 // ID가 id, 요청시간이 arrival_time, 프린트 시간이 duration인 Job을 큐에 삽입
@@ -49,6 +52,7 @@ void insert_job_into_queue(int id, int arrival_time, int duration)
 	p.id = id;
 	p.arrival_time = arrival_time;
 	p.duration = duration;
+	addq(p);
 
 	printf(" 새 jop <%d>이 들어 왔습니다. 프린트 시간은 = %d 입니다. \n", id, duration);
 	
@@ -139,7 +143,8 @@ void queue_show()
 	printf("현재 프린터 큐: [ ");
 	for (queue_pointer i = front; i != NULL; i = i->link)		//i가 NULL이 되면 반복중지
 	{
-		printf("%c ", (i->item).id);
+		printf("%d ", (i->item).id);
+		
 	}
 	printf("]\n");
 }
