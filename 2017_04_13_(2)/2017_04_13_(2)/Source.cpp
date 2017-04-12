@@ -27,9 +27,10 @@ void main()
 		}
 
 		// 아직 프린트 중
+		
 		else
 		{
-			printf(" 아직 Jop <%d>을 프린트하고 있습니다 ... \n", current_job_id);
+			printf("아직 Jop <%d>을 프린트하고 있습니다 ... \n", current_job_id);
 			--remaining_time;
 		}
 		// 현재 큐의 상태를 보여줌
