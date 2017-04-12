@@ -77,13 +77,14 @@ void list_delete(list_pointer head, Element e)
 	{
 		if (node->link->data == e)
 		{
-			temp = node->link;
-			node->link = node->link->link;
-			
+			node->link = node;
+			free(node);
 		}
 		node = node->link;
-	}	
-	free(temp);
+	}
+	
+
+	
 }
 
 bool list_empty(list_pointer head)
