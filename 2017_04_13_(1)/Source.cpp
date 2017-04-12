@@ -1,11 +1,13 @@
 #include <stdio.h>
 #include <conio.h>
 #include <stdlib.h>
+#include <ctype.h>
 #include "linked_queue.h"
 void main()
 {
 	char c, e;
 	front = rear = NULL;
+
 
 	while (1)
 	{
@@ -38,6 +40,7 @@ void main()
 	}
 }
 
+
 boolean is_queue_empty()
 {
 	if (front == NULL)
@@ -46,11 +49,13 @@ boolean is_queue_empty()
 		return false;
 }
 
+
 void addq(Element e)
 {
 	queue_pointer temp = (queue_pointer)malloc(sizeof(queue));
 	temp->item = e;
 	temp->link = NULL;
+
 
 	if (is_queue_empty())					//queue가 비어있으면
 	{
@@ -63,20 +68,26 @@ void addq(Element e)
 	}
 }
 
+
 Element deleteq()
 {
 	queue_pointer temp;
 	Element item;
 
+
 	temp = front;
 	item = front->item;
 
+
 	front = front->link;
+
 
 	free(temp);
 
+
 	return item;
 }
+
 
 void queue_show()
 {
