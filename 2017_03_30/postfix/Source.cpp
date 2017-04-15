@@ -75,16 +75,16 @@ int eval_postfix(char *exp)				//후위표기연산
 
 
 	int i = 0;
-	char op, op2, op1;					
+	char op, op2, op1;
 	char token = exp[0];				//초기입력값
 	while (token != NULL)
 	{
-		if (is_number(token))			
+		if (is_number(token))
 		{
 			op = token - '0';			//문자(char)를 아스키코드가 아닌 정수형숫자로 바꿈
 			push(op);					//입력이 숫자면 psuh 
 		}
-		else if(is_op(token))
+		else if (is_op(token))
 		{
 			op2 = pop(); op1 = pop();	//입력이 연산자면 마지막 두개가지고 다음의 작업
 			switch (token)
