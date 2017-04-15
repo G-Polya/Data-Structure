@@ -18,13 +18,10 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="problem3.cpp" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{FC19406E-D19F-492E-A379-264B4B204A9C}</ProjectGuid>
+    <ProjectGuid>{EE7C9C62-7235-4E0D-AF85-7A265DED9E21}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>Homework</RootNamespace>
+    <RootNamespace>problem4</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -148,6 +145,12 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="problem 4.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="2_dimensin_figure.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
