@@ -1,3 +1,5 @@
+//참고코드 http://stackoverflow.com/questions/7685/merge-sort-a-linked-list
+
 #include <stdio.h>
 #include <conio.h>
 #include <ctype.h>
