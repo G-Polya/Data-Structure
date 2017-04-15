@@ -32,7 +32,11 @@ void main()
 	new_head->data = NULL;
 	new_head->link = NULL;
 
-	new_head = merge_sort(head1, head2);
+	list_pointer temp;
+
+	temp = merge(head1, head2);
+	new_head = merge_sort(temp);
+
 	list_show(new_head);
 
 	
