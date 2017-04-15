@@ -12,7 +12,7 @@ int current_time = 0; // 현재 시각
 int new_job_id = 0; // 새로운 Job의 ID
 int current_job_id; // 현재 프린트하고 있는 Job의 ID
 int remaining_time; // 현재 프린트하고 있는 Job의 남은 프린트 시간. 매 시각 1씩 감소
-int total_wait_time; // 프린트를 시작한 모든 Job의 대기시간(start time - arrival time)의 합
+int total_wait_time = 0; // 프린트를 시작한 모든 Job의 대기시간(start time - arrival time)의 합
 int num_printed_jobs; // 시뮬레이션이 끝날 때까지 프린트가 시작된 Job의 총 수
 
 					  // Job

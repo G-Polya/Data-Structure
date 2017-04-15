@@ -20,7 +20,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Queue_simulation.h">
+    <ClInclude Include="linked_queue.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
