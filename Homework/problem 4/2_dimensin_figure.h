@@ -2,8 +2,8 @@
 
 typedef struct Point
 {
-	float x;
-	float y;
+	double x;
+	double y;
 
 } Point;
 
@@ -27,4 +27,10 @@ Rect make_rect(Point _p1, Point _p2);
 
 double line_length(Line s);
 
-int rect_arear(Rect r);
+double rect_area(Rect r);
+
+typedef struct Circle
+{
+	Point p1;
+	float radius;
+};
