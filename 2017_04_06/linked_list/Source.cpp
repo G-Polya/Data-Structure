@@ -54,7 +54,7 @@ void list_insert(list_pointer head, Element e)
 	head->link = New;
 	New->link = temp;
 	New->data = e;
-	
+
 }
 
 list_pointer list_search(list_pointer head, Element e)
@@ -82,9 +82,9 @@ void list_delete(list_pointer head, Element e)
 		}
 		node = node->link;
 	}
-	
 
-	
+
+
 }
 
 bool list_empty(list_pointer head)

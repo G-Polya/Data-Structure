@@ -1,5 +1,4 @@
 #pragma once
-
 #define Element char
 #define bool unsigned char
 #define true 1
