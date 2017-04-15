@@ -5,67 +5,87 @@
 
 int main()
 {
+	head = (stack_pointer)malloc(sizeof(stack));
+	head->item = NULL;
+	head->link = NULL;
 
-}
+	char c, e;
 
-void list_insert(list_pointer head, Element e)
-{
-	list_pointer New;
-	New = (list_pointer)malloc(sizeof(list_node));		//list_node형 메모리할당
-
-	int temp = head->link;
-	head->link = New;
-	New->link = temp;
-	New->data = e;
-
-}
-
-list_pointer list_search(list_pointer head, Element e)
-{
-	list_pointer p = head;
-	while (p)
+	while (1)
 	{
-		if (p->data == e)
-			return p;
-		p = p->link;		//next node로 이동
-	}
-	return NULL;
-}
-
-void list_delete(list_pointer head, Element e)
-{
-	list_pointer node = head;
-	list_pointer temp = (list_pointer)malloc(sizeof(list_node));
-	while (node->link)
-	{
-		if (node->link->data == e)
+		printf("\nCommand> ");
+		c = _getch();
+		_putch(c);
+		c = toupper(c);
+		switch (c)
 		{
-			node->link = node;
-			free(node);
+		case '+':
+			e = _getch();
+			_putch(e);
+			push(e);
+			break;
+		case '-':
+			if (is_stack_empty())
+			{
+				printf("\n Queue is empty !!! \n");
+			}
+			else
+			{
+				e = pop();
+				printf("\n %c ", e);
+			}
+			break;
+		case 'S': stack_show(); break;
+		case 'Q': printf("\n"); exit(1);
+		default: break;
 		}
-		node = node->link;
 	}
-
-
-
 }
 
-bool list_empty(list_pointer head)
+boolean is_stack_empty()
 {
-	if (head->link == NULL)
-	{
-		printf("\nList is Empty\n");
+	if (top == NULL)
 		return true;
-	}
+	else
+		return false;
 }
 
-void list_show(list_pointer head)
+void push(Element e)
 {
-	list_pointer p = head;
-	printf("\n");
-	while (p != NULL)
+	stack_pointer temp = (stack_pointer)malloc(sizeof(stack));
+	temp->item = e;
+	temp->link = NULL;
+
+	if (is_stack_empty())
 	{
-		printf("%c ", p->data);
-		p = p->link;
+		top = temp;
+	}
+	else
+	{
+		top->link = temp;
+		top = temp;
+	}
+
+}
+
+Element pop()
+{
+	stack_pointer temp;
+	Element item;
+
+	temp = top;
+	item = top->item;
+	top = NULL;
+	free(temp);
+
+	return item;
+}
+
+void stack_show()
+{
+	printf("\n");
+	for (stack_pointer i = head; i != NULL; i = i->link)
+	{
+		printf(" %c ", i->item);
 	}
 }

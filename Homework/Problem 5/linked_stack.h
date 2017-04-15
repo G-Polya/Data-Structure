@@ -1,21 +1,22 @@
 #pragma once
 
-#define Element char
-#define bool unsigned char
+#define boolean unsigned char
 #define true 1
-#define false 0
+#define false
+typedef char Element;
 
-typedef struct list_node* list_pointer;
-
-typedef struct list_node
+typedef struct stack* stack_pointer;
+typedef struct stack
 {
-	Element data;
-	list_pointer link;
-} list_node;
+	Element item;
+	stack_pointer link;
+} stack;
 
+stack_pointer top;
+stack_pointer head;
 
-void list_insert(list_pointer head, Element e);
-void list_delete(list_pointer head, Element e);
-list_pointer list_search(list_pointer head, Element e);
-bool list_empty(list_pointer head);
-void list_show(list_pointer head);
+void push(Element e);
+Element pop();
+void stack_show();
+boolean is_stack_full();
+boolean is_stack_empty();
