@@ -73,6 +73,7 @@ boolean is_number(char c)				//입력이 숫자인지 아닌지 확인
 
 boolean is_op(char c)					//입력이 연산자인지 확인
 {
+
 	if (c == '+')
 		return true;
 	else if (c == '-')
