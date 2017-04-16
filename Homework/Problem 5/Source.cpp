@@ -1,19 +1,54 @@
-#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include "linked_stack.h"
-#include <stdlib.h>
 
 int main()
 {
-	char exp[100]; // postfix expression
-	int result;
-	while (1) {
-		printf("\n Input postfix expression: ");
-		scanf("%s", exp);
-		result = eval_postfix(exp);
-		printf(" Result = %d \n\n", result);
+	char *express = "a*[b-{c+(d-e)/(f-g)}-h]+(i-j)*k";
+	printf("%s", express);
+	if (check(express) == 1)
+		printf("\n 수식의 괄호가 맞게 사용되었습니다!\n");
+	else
+		printf("\n 수식의 괄호가 틀렸습니다 떙!!");
+	getchar();
+}
+
+//a*[b-{c+(d-e)/(f-g)}-h]+(i-j)
+//괄호 검사
+int check(char *exp)
+{
+	char symbol, open_pair;
+	int length = strlen(exp);
+	top = NULL;
+	for (int i = 0; i < length; i++)
+	{
+		symbol = exp[i];
+		switch (symbol)
+		{
+		case'(':
+		case'{':
+		case'[':
+			push(symbol);
+			break;
+		case')':
+		case'}':
+		case']':
+			if (top == NULL)
+				return 0;
+			else
+			{
+				open_pair = pop();
+				if ((open_pair == '(' && symbol != ')') || (open_pair == '{' && symbol != '}')
+					|| (open_pair == '[' && symbol != ']'))
+					return 0;
+				else
+					break;
+			}	
+		}
 	}
-	return 0;
+	if (top == NULL)
+		return 1;
+	else
+		return 0;
 }
 
 void stack_show()
@@ -25,14 +60,13 @@ void stack_show()
 		printf("%c ", p->item);
 	}
 
-	
+
 
 	/*stack_pointer p = top;
-	
 	while (p)
 	{
-		printf("%c ", p->item);
-		p = p->link;
+	printf("%c ", p->item);
+	p = p->link;
 	}
 	*/
 }
@@ -63,109 +97,32 @@ Element pop()
 	}
 }
 
-boolean is_number(char c)				//입력이 숫자인지 아닌지 확인
+Element peek()
 {
-	if (('0' <= c) && (c <= '9'))
-		return true;
+	Element item;
+	if (top == NULL)
+	{
+		printf("\n\n Stack is empty!\n");
+		return 0;
+	}
 	else
-		return false;
+	{
+		item = top->item;
+		return item;
+	}
 }
 
-boolean is_op(char c)					//입력이 연산자인지 확인
+void del()
 {
-	if (c == '+')
-		return true;
-	else if (c == '-')
-		return true;
-	else if (c == '*')
-		return true;
-	else if (c == '/')
-		return true;
+	stack_pointer temp;
+	if (top == NULL)
+	{
+		printf("\n\n Stack is empty!\n");
+	}
 	else
-		return false;
-}
-
-int eval_postfix(char *exp)				//후위표기연산
-{
-	int i = 0;
-	char op, op2, op1;
-	int count = 0;
-	char token = exp[0];//초기입력값
-	while (token != NULL)
 	{
-		if (is_number(token))
-		{
-			
-			op = token - '0';			//문자(char)를 아스키코드가 아닌 정수형숫자로 바꿈
-			
-			push(op);					//입력이 숫자면 psuh 
-		}
-		else if (is_op(token) && token != ' ')
-		{
-			op2 = pop(); op1 = pop();	//입력이 연산자면 마지막 두개가지고 다음의 작업
-			switch (token)
-			{
-			case '+': push(op1 + op2); break;
-			case '-': push(op1 - op2); break;
-			case '*': push(op1 * op2); break;
-			case '/':push(op1 / op2); break;
-			}
-		}
-		token = exp[++i];				//토큰에 다음 입력값 대입
-	}
-	return pop();						//연산결과 반환
-}
-
-boolean check(char* exp)
-{
-	int p = 0;
-	int length = strlen(exp);
-	char symbol;
-	char* postfix = (char*)malloc(length * 2);
-
-	for (int i = 0; i < length; i++)
-	{
-		symbol = exp[i];
-		switch (symbol)
-		{
-		case '(':
-		case '{':
-		case '[':
-			push(symbol);
-			break;
-
-		case ')':
-		case '}':
-		case ']':
-			is_bloack(postfix, &p);
-			break;
-		}
-
-
+		temp = top;
+		top = top->link;
+		free(temp);
 	}
 }
-
-
-void is_bloack(char* postfix, int *p)
-{
-	char temp;
-
-	while (1)
-	{
-		temp = (char)pop(); // 스택에서 하나를 꺼냄
-
-		if ((temp != '(') && (temp != '{') && (temp != '[')) // 열림 괄호가 아니라면
-		{
-			postfix[(*p)++] = temp; // 문자 배열에 저장
-			postfix[(*p)++] = ' ';
-		}
-		else
-		{
-			break;
-		}
-	}
-}
-
-
-
-		
