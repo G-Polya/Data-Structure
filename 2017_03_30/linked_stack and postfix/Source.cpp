@@ -25,14 +25,14 @@ void stack_show()
 		printf("%c ", p->item);
 	}
 
-	
+
 
 	/*stack_pointer p = top;
-	
+
 	while (p)
 	{
-		printf("%c ", p->item);
-		p = p->link;
+	printf("%c ", p->item);
+	p = p->link;
 	}
 	*/
 }
@@ -95,9 +95,9 @@ int eval_postfix(char *exp)				//후위표기연산
 	{
 		if (is_number(token))
 		{
-			
+
 			op = token - '0';			//문자(char)를 아스키코드가 아닌 정수형숫자로 바꿈
-			
+
 			push(op);					//입력이 숫자면 psuh 
 		}
 		else if (is_op(token) && token != ' ')
@@ -115,57 +115,3 @@ int eval_postfix(char *exp)				//후위표기연산
 	}
 	return pop();						//연산결과 반환
 }
-
-boolean check(char* exp)
-{
-	int p = 0;
-	int length = strlen(exp);
-	char symbol;
-	char* postfix = (char*)malloc(length * 2);
-
-	for (int i = 0; i < length; i++)
-	{
-		symbol = exp[i];
-		switch (symbol)
-		{
-		case '(':
-		case '{':
-		case '[':
-			push(symbol);
-			break;
-
-		case ')':
-		case '}':
-		case ']':
-			is_bloack(postfix, &p);
-			break;
-		}
-
-
-	}
-}
-
-
-void is_bloack(char* postfix, int *p)
-{
-	char temp;
-
-	while (1)
-	{
-		temp = (char)pop(); // 스택에서 하나를 꺼냄
-
-		if ((temp != '(') && (temp != '{') && (temp != '[')) // 열림 괄호가 아니라면
-		{
-			postfix[(*p)++] = temp; // 문자 배열에 저장
-			postfix[(*p)++] = ' ';
-		}
-		else
-		{
-			break;
-		}
-	}
-}
-
-
-
-		
