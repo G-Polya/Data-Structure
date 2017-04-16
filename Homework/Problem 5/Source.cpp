@@ -1,43 +1,18 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include "linked_stack.h"
 #include <stdlib.h>
 
 int main()
 {
-	char c, e;
-	printf("********* Command *********\n");
-	printf("+<c>: Push c, -: Pop,\n");
-	printf("S: Show, Q: quit\n");
-	printf("***************************\n\n");
-
-
+	char exp[100]; // postfix expression
+	int result;
 	while (1) {
-		printf("\nCommand> ");
-		c = _getch();									//문자입력
-		_putch(c);										//입력받자마자 출력
-		c = toupper(c);
-		switch (c)
-		{
-		case '+':										//'+'알때 문자입력을 한번더 받고, 그 문자를 stack에 push
-			e = _getch();
-			_putch(e);
-			push(e);
-			break;
-		case '-':										//'-'일때 pop
-			e = pop();
-			printf("\n %c \n", e);
-			break;
-		case 'S':										//현재 stack상태를 보여줌
-			stack_show();
-			
-			break;
-		case 'Q':
-			printf("\n");
-			exit(1);
-		default: break;
-		}
+		printf("\n Input postfix expression: ");
+		scanf("%s", exp);
+		result = eval_postfix(exp);
+		printf(" Result = %d \n\n", result);
 	}
-
 	return 0;
 }
 
@@ -86,4 +61,56 @@ Element pop()
 		free(temp);
 		return item;
 	}
+}
+
+boolean is_number(char c)				//입력이 숫자인지 아닌지 확인
+{
+	if (('0' <= c) && (c <= '9'))
+		return true;
+	else
+		return false;
+}
+
+boolean is_op(char c)					//입력이 연산자인지 확인
+{
+	if (c == '+')
+		return true;
+	else if (c == '-')
+		return true;
+	else if (c == '*')
+		return true;
+	else if (c == '/')
+		return true;
+	else
+		return false;
+}
+
+int eval_postfix(char *exp)				//후위표기연산
+{
+
+
+	int i = 0;
+	char op, op2, op1;
+	char token = exp[0];				//초기입력값
+	while (token != NULL)
+	{
+		if (is_number(token))
+		{
+			op = token - '0';			//문자(char)를 아스키코드가 아닌 정수형숫자로 바꿈
+			push(op);					//입력이 숫자면 psuh 
+		}
+		else if (is_op(token))
+		{
+			op2 = pop(); op1 = pop();	//입력이 연산자면 마지막 두개가지고 다음의 작업
+			switch (token)
+			{
+			case '+': push(op1 + op2); break;
+			case '-': push(op1 - op2); break;
+			case '*': push(op1 * op2); break;
+			case '/':push(op1 / op2); break;
+			}
+		}
+		token = exp[++i];				//토큰에 다음 입력값 대입
+	}
+	return pop();						//연산결과 반환
 }
