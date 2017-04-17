@@ -12,11 +12,11 @@ void main()
 	list_pointer head1, head2;
 	// dummy head ³ëµå
 	head1 = (list_pointer)malloc(sizeof(list_node));
-	head1->data = NULL;
+	head1->data = -1;
 	head1->link = NULL;
 
 	head2 = (list_pointer)malloc(sizeof(list_node));
-	head2->data = NULL;
+	head2->data = -1;
 	head2->link = NULL;
 
 	for (int i = 1; i <= 9; i++)
@@ -24,7 +24,7 @@ void main()
 		if (i % 3 == 0)
 			list_insert(head1, i);
 
-		if (i % 4 == 0)
+		if (i % 5 == 0)
 			list_insert(head2, i);
 	}
 	list_show(head1);
@@ -101,8 +101,11 @@ void list_show(list_pointer head)
 	printf("\n");
 	while (p != NULL)
 	{
+		if (p->data < 0)
+			break;
 		printf("%d ", p->data);
 		p = p->link;
+		
 	}
 }
 

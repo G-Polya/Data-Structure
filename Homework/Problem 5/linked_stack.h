@@ -16,9 +16,6 @@ void push(Element e);
 Element pop();
 void stack_show();
 boolean is_stack_empty();
+//이상 linked_stack
 
-int check(char *exp);
-Element peek();
-
-
-void del();
+int check(char *exp);			//괄호검사 함수

@@ -14,18 +14,18 @@ int main()
 	Circle c2;
 	double length, R_area, C_area1, C_area2;
 
-	p1 = make_point(1, 1);
-	p2 = make_point(3, 3);
-	s = make_line(p1, p2);
-	r = make_rect(p1, p2);
+	p1 = make_point(1, 1);				//직각좌표(1, 1)인 점p1
+	p2 = make_point(3, 3);				//직각좌표(3, 3)인 점p1
+	s = make_line(p1, p2);				//p1과 p2를 잇는 선분 s
+	r = make_rect(p1, p2);				//p1과 p2를 대각선의 양끝으로 하는 직사각형 r
 
-	c1 = make_Circle_1(p1, 4);
-	c2 = make_Circle_2(p2, p1);
+	c1 = make_Circle_1(p1, 4);			//중심이 p1이고 반지름이 4인 원 c1
+	c2 = make_Circle_2(p2, p1);			//중심이 p2이고 원위의 한점이 p1인 원c2
 
-	length = line_length(s);
-	R_area = rect_area(r);
-	C_area1 = Circle_area_1(c1);
-	C_area2 = Circle_area_2(c2);
+	length = line_length(s);			//선분 s의 길이
+	R_area = rect_area(r);				//직사각형 r의 넓이
+	C_area1 = Circle_area_1(c1);		//원 c1의 넓이
+	C_area2 = Circle_area_2(c2);		//원 c2의 넓이
 
 
 	printf("line_length: %f, rect_area: %f\n", length, R_area);

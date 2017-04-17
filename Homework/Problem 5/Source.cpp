@@ -3,7 +3,7 @@
 
 int main()
 {
-	char *express = "a*[b-{c+(d-e)/(f-g)}-h]+(i-j)*k";
+	char *express = "a*[b-{c+(d-e)/(f-g)}-h]+(i-j)";
 	printf("%s", express);
 	if (check(express) == 1)
 		printf("\n 수식의 괄호가 맞게 사용되었습니다!\n");
@@ -16,10 +16,10 @@ int main()
 //괄호 검사
 int check(char *exp)
 {
-	char symbol, open_pair;
+	char symbol, open_pair;					//symbol:문자열 원소, open_pair: 짝맞추기 위해
 	int length = strlen(exp);
 	top = NULL;
-	for (int i = 0; i < length; i++)
+	for (int i = 0; exp[i] != NULL;i++)		//문자열길이만큼, 즉 문자열 끝까지. for(int i = 0; exp[i] != NULL; i++)로 대체가능
 	{
 		symbol = exp[i];
 		switch (symbol)
@@ -59,9 +59,6 @@ void stack_show()
 	{
 		printf("%c ", p->item);
 	}
-
-
-
 	/*stack_pointer p = top;
 	while (p)
 	{
