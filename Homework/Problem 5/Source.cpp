@@ -4,11 +4,8 @@
 
 int main()
 {
-	//char *express = "a*[b-{c+(d-e)/(f-g)}-h]+(i-j)";
-	char *express;
-
-	printf("문자열 입력: ");
-	scanf("%s", express);
+	char *express = "a*[b-{c+(d-e)/(f-g)}-h]+(i-j)";
+	
 	printf("%s", express);
 	if (check(express) == 1)
 		printf("\n 수식의 괄호가 맞게 사용되었습니다!\n");
@@ -44,14 +41,14 @@ int check(char *exp)
 			{
 				open_pair = pop();				//문자열의 원소가 ')', '}', ']'이지만 stack이 비어있지 않았으면, stack의 마지막 원소를 pop해서 open_pair에 저장
 				if ((open_pair == '(' && symbol != ')') || (open_pair == '{' && symbol != '}')
-					|| (open_pair == '[' && symbol != ']'))						//open_pair와 symbol이 짝이 맞으면. 즉, 왼쪽 오른쪽 괄호수가 같고, 
+					|| (open_pair == '[' && symbol != ']'))						//open_pair와 symbol이 짝이 맞으면, == 괄호가 올바르게 사용되었으면
 					return 0;
 				else
 					break;
 			}	
 		}
 	}
-	if (top == NULL)
+	if (is_stack_empty())
 		return 1;
 	else
 		return 0;
