@@ -6,38 +6,44 @@
 #include <stdlib.h>
 #include "linked_list.h"
 #include <assert.h>
+
+
 void main()
 {
-
 	list_pointer head1, head2;
 	// dummy head 노드
 	head1 = (list_pointer)malloc(sizeof(list_node));
-	head1->data = -1;
+	head1->data = NULL;
 	head1->link = NULL;
 
 	head2 = (list_pointer)malloc(sizeof(list_node));
-	head2->data = -1;
+	head2->data = NULL;
 	head2->link = NULL;
+	
+	
+	//원소삽입
+	list_insert(head1, 2);
+	list_insert(head1, 3);
+	list_insert(head1, 6);
+	list_insert(head1, 7);
 
-	for (int i = 1; i <= 9; i++)
-	{
-		if (i % 3 == 0)
-			list_insert(head1, i);
+	list_insert(head2, 1);
+	list_insert(head2, 4);
+	list_insert(head2, 5);
 
-		if (i % 5 == 0)
-			list_insert(head2, i);
-	}
+
 	list_show(head1);
 	list_show(head2);
 
+	//새로운 head
 	list_pointer new_head = (list_pointer)malloc(sizeof(list_node));
 	new_head->data = NULL;
 	new_head->link = NULL;
 
 	list_pointer temp;
 
-	temp = merge(head1, head2);
-	new_head = merge_sort(temp);
+	temp = merge(head1, head2);			//linked_list 두개 합병
+	new_head = merge_sort(temp);		//정렬
 
 	list_show(new_head);
 
@@ -101,7 +107,7 @@ void list_show(list_pointer head)
 	printf("\n");
 	while (p != NULL)
 	{
-		if (p->data < 0)
+		if (p->data > 1000)
 			break;
 		printf("%d ", p->data);
 		p = p->link;
@@ -109,6 +115,8 @@ void list_show(list_pointer head)
 	}
 }
 
+//합병 정렬(list를 합병한 후 정렬한게 아니라, "합병 정렬"이다. 
+//list를 merge한 다음, 정렬의 수단으로써 merge_sort를 사용한것뿐이지. 정렬수단으로 bubble_sort를 사용해도 무방하다 
 list_pointer merge_sort(list_pointer head)
 {
 	if (head == NULL || head->link == NULL)
@@ -123,27 +131,29 @@ list_pointer merge_sort(list_pointer head)
 	return merge(merge_sort(head), merge_sort(sHalf));
 }
 
+//list합병
 list_pointer merge(list_pointer a, list_pointer b)
 {
 	list_pointer dummyhead, curr;
-	dummyhead = (list_pointer)malloc(sizeof(list_node));
-	curr = dummyhead;
+	dummyhead = (list_pointer)malloc(sizeof(list_node));//dummyhead
 
-	while (a != NULL && b != NULL)
+	curr = dummyhead;//현재상태 == dummy
+
+	while (a != NULL && b != NULL)		//입력받은 parameter인 linked_list가 비어있지 않다
 	{
-		if (a->data <= b->data)
+		if (a->data <= b->data)			
 		{
-			curr->link = a;
-			a = a->link;
+			curr->link = a;				//작은놈 연결
+			a = a->link;				//다음것으로 넘어감
 		}
 		else
 		{
-			curr->link = b;
-			b = b->link;
+			curr->link = b;				//작은놈 연결
+			b = b->link;				//다음것으로 넘어감
 		}
-		curr = curr->link;
+		curr = curr->link;				//현재상태 넘어감
 	}
-	curr->link = (a == NULL) ? b : a;
+	curr->link = (a == NULL) ? b : a;	//넘어가진 현재상태는 a가 비어있으면 b이고 비어있지 않으면 a이다.
 	return dummyhead->link;
 }
 

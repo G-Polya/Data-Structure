@@ -1,5 +1,6 @@
 #pragma once
-#define Element char
+
+#define Element int
 #define bool unsigned char
 #define true 1
 #define false 0
@@ -11,6 +12,8 @@ typedef struct list_node
 	Element data;
 	list_pointer link;
 } list_node;
+
+
 
 
 void list_insert(list_pointer head, Element e);
