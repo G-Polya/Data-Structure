@@ -1,9 +1,14 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include "linked_stack.h"
 
 int main()
 {
-	char *express = "a*[b-{c+(d-e]/(f-g)}-h]+(i-j)";
+	//char *express = "a*[b-{c+(d-e)/(f-g)}-h]+(i-j)";
+	char *express;
+
+	printf("문자열 입력: ");
+	scanf("%s", express);
 	printf("%s", express);
 	if (check(express) == 1)
 		printf("\n 수식의 괄호가 맞게 사용되었습니다!\n");
