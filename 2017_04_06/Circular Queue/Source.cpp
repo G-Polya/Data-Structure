@@ -23,7 +23,7 @@ int main()
 			break;
 		case '-':
 			e = DeleteQ();
-			printf("\n %c \n", e);
+			printf("%c \n", e);
 			break;
 		case 'S':
 			Queue_show();
@@ -78,10 +78,10 @@ char DeleteQ()
 	else
 	{
 		front = (front + 1) % Q_size;
+		printf("\nRear: %d, Front: %d\n", rear, front);
 
 		return QueueArray[front];
 		//return QueueArray[++front];
-		printf("Rear: %d, Front: %d\n", rear, front);
 
 	}
 }
@@ -93,7 +93,12 @@ void Queue_show()
 	if (rear == front)
 		Q_isEmpty();
 	else
-	{		
+	{
+		//for (int i = front; i != rear; i = (i + 1) % Q_size)
+		//{
+		//	printf("%c ", QueueArray[i]);
+		//}
+
 		int i = front;
 		while (i != rear)
 		{
@@ -102,6 +107,5 @@ void Queue_show()
 		}
 		printf("\n");
 	}
-	
 
 }

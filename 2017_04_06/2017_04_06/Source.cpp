@@ -73,8 +73,15 @@ Element deleteQ()
 void Queue_show()
 {
 	printf("\n");
-	for (int i = front + 1; i <= rear; i++)
+	/*int i = front;
+	while (i != rear)
 	{
-		printf(" %c ", QueueArray[i]);
+		i = i++;
+		printf("%c ", QueueArray[i]);
+	}*/
+
+	for (int i = front; i != rear; i++)
+	{
+		printf("%c ", QueueArray[i]);
 	}
 }
