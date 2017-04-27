@@ -133,7 +133,8 @@ int bt_sum(tree_pointer ptr)
 	if (ptr == NULL)
 		return 0;
 
-	return ptr->data + bt_sum(ptr->left) + bt_sum(ptr->right);
+	
+	return  bt_sum(ptr->left) + bt_sum(ptr->right);
 }
 
 int bt_height(tree_pointer ptr)
