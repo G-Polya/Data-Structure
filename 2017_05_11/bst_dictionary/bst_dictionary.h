@@ -1,8 +1,9 @@
 #pragma once
 // Binary search tree node
+// 영어단어가 일종의 key, 국어단어가 data
 typedef struct tree_node *tree_pointer;
 typedef struct tree_node {
-	char w1[100];
+	char w1[100];			
 	char w2[100];
 	tree_pointer left;
 	tree_pointer right;
