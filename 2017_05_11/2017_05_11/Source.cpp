@@ -18,8 +18,8 @@ int main()
 
 	while (1) {
 		printf("\nCOMMAND >>");
-		c = getch();
-		putch(c);
+		c = _getch();
+		_putch(c);
 		c = toupper(c);
 
 		switch (c) {
@@ -58,11 +58,11 @@ int main()
 
 }
 
-void bst_initalize()
+void bst_initalize()		//root를 더미헤드로 만들고 초기값으로 초기화
 {
 	root = (tree_pointer)malloc(sizeof(tree_node));
 
-	root->key = INT_MIN;
+	root->key = INT_MAX;	//추가되는 노드의 key와 root의 key를 비교할때 새로운 노드가 root의 왼쪽 자식으로 가게함
 
 	root->data = NULL;
 
@@ -75,39 +75,40 @@ void bst_initalize()
 
 void bst_insert(int key, char data)
 {
-	tree_pointer p = root;
+	tree_pointer p = root; //처음은 root
 
+	//새로운 노드 생성
 	tree_pointer newNode = (tree_pointer)malloc(sizeof(tree_node));
-
 	newNode->key = key;
 	newNode->data = data;
 	newNode->left = NULL;
 	newNode->right = NULL;
 
+	//newNode의 key값과 p의 그것을 비교해서 newNode를 알맞은 위치에 삽입.알맞은 위치에 삽입될 때까지 반복
 	while (1)
 	{
-		if (p->key < key)
+		if (p->key < key)			//p의 key가 삽입대상의 key보다 작다면 
 		{
-			if (p->right == NULL)
+			if (p->right == NULL)	//p의 오른쪽이 비었다면
 			{
-				p->right = newNode;
+				p->right = newNode; //오른쪽에 삽입
 				break;
 			}
-			else
+			else                    //비어있지 않다면
 			{
-				p = p->right;
+				p = p->right;		//기존의 p의 오른쪽자식이 새로운 p가 된다. 다음으로 넘어가는 과정
 			}
 		}
-		else
+		else                        //p의 key가 삽입대상의 key보다 크다면
 		{
-			if (p->left == NULL)
+			if (p->left == NULL)	//p의 왼쪽이 비었다면
 			{
-				p->left = newNode;
+				p->left = newNode;	//왼쪽에 삽입
 				break;
 			}
 			else
 			{
-				p = p->left;
+				p = p->left;		//기존 p의 왼쪽자식이 새로운 p가 된다. 다음으로 넘어가는 과정
 			}
 		}
 	}
@@ -117,35 +118,36 @@ void bst_insert(int key, char data)
 
 char bst_search(int key)
 {
-	tree_pointer p = root;
+	tree_pointer p = root;			//처음시작은 root
 	char result = NULL;
-	while (1)
+	while (1)						//입력된 key에 알맞은 tree의 key를 찾을때까지 반복
 	{
-		if (p->key < key)
+		if (p->key < key)			//오른쪽
 		{
 			if (p->right == NULL)
 				break;
 			else
-				p = p->right;
+				p = p->right;		//다음으로 넘어감
 		}
-		else if (p->key > key)
+		else if (p->key > key)		//왼쪽
 		{
 			if (p->left == NULL)
 				break;
 			else
-				p = p->left;
+				p = p->left;		//다음으로 넘어감
 		}
-		else
+		else                        //내가 찾던 key
 		{
-			result = p->data;
+			result = p->data;		
 			break;
 		}
 	}
 
-	return result;
+	return result;				   //내가 찾던 key를 가지는 node의 데이터 반환
 }
 
-void bst_show_inorder(tree_pointer p)
+//여기서 p는 서브트리의 처음 node
+void bst_show_inorder(tree_pointer p)	
 {
 	if (p != NULL)
 	{
