@@ -59,7 +59,7 @@ void insert_max_heap(Element item)
 
 Element delete_max_heap()
 {
-	Element max = heap[1];
+	Element min = heap[1];
 	Element temp = heap[heap_size--];
 	int p = 1, c = 2;
 	while (c <= heap_size)
@@ -74,7 +74,7 @@ Element delete_max_heap()
 	}
 
 	heap[p] = temp;
-	return max;
+	return min;
 }
 
 
