@@ -88,7 +88,7 @@ void max_heap_show()
 
 boolean is_heap_empty()
 {
-	if (heap_size < -1)
+	if (heap_size == 0)
 		return true;
 	else
 		return false;
