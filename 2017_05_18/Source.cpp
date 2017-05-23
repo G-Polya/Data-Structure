@@ -3,7 +3,8 @@
 #include <conio.h>
 #include <stdlib.h>
 #include "max_heap.h"
-void main() {
+void main()
+{
 	char c, data;
 	int key;
 	Element item;
