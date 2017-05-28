@@ -2,23 +2,26 @@
 #include <stdio.h>
 #include "FileIO.h"
 
-void read_txt(char *fname)
+void read_tok(char *fname)
 {
-	FILE *fp = fopen(fname, "r");
-	char my_sentence[100];
+	char buffer[100];
 
-	if (fp == NULL)
-		perror("Error opening file");
-	else
-	{
-		while (fgets(my_sentence, 100, fp))
+	FILE *fp = fopen(fname, "r");
+	while(fgets(buffer, sizeof(buffer),fp))
+	{		
+		if (strlen(buffer) != 1)
 		{
-			if (strlen(my_sentence) != 1)
+			char *pch = strtok(buffer, " !,.?\n");
+
+			while (pch != NULL)
 			{
-				puts(my_sentence);
+				printf("%s\n", pch);
+				pch = strtok(NULL, " !,.?\n");
 			}
 		}
 	}
 	fclose(fp);
 }
 
+
+//void tok_txt()

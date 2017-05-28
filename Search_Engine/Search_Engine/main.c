@@ -5,7 +5,7 @@
 int main()
 {
 
-	read_txt("temp.txt");
+	read_tok("temp.txt");
 
 
 
