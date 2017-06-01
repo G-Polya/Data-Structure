@@ -66,8 +66,8 @@ char * hash_search(char *key)
 
 		if (h == hash_value)
 		{
-			printf("fali");
-			return NULL;
+			printf("fail");
+			return ;
 		}
 
 	}
