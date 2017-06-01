@@ -73,6 +73,8 @@ char * hash_search(char *key)
 	}
 
 	printf("fail");
+
+	return NULL;
 }
 
 int transform(char *key)
