@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include "hash_dictionary.h"
 
@@ -15,4 +16,46 @@ int build_dictionary(char *fname)
 	}
 	fclose(ifp);
 	return(i);
+}
+
+int hash(char *key)
+{
+	return (*key % 100);
+}
+
+void hash_insert(char *key, char *data)
+{
+	int h = hash(key);
+	int i = 0;
+
+	while (hash_table[h].key != 0 && (i < 100))
+	{
+		if (hash_table[h].key == key)
+		{
+			strcpy(hash_table[h].data,data);
+			return;
+		}
+		h = (h + 1) % 100;
+		i++;
+	}
+
+	if (hash_table[h].key == 0)
+	{
+		strcpy(hash_table[h].key, key);
+		strcpy(hash_table[h].data, data);
+	}
+
+}
+
+char * hash_search(char *key)
+{
+	int h = hash(key);
+
+	while (hash_table != NULL)
+	{
+		if (hash_table[h].key == key)
+			return hash_table;
+	}
+
+
 }

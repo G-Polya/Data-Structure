@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <conio.h>
 #include <stdlib.h>
@@ -8,6 +9,7 @@ void main()
 	char c, fname[20];
 	char key[100], *data;
 	int wcount;
+
 	//	・・・・・・・・・.
 	while (1) {
 		printf("\nCommand> ");

@@ -9,7 +9,7 @@ typedef struct {
 	char data[100];
 } element;
 element hash_table[TABLE_SIZE];
-// For caomparison count
+// For comparison count
 int num_comparison;
 // 파일에서 단어들을 읽어 해시테이블 구성
 int build_dictionary(char *fname);
