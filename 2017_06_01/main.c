@@ -13,8 +13,8 @@ void main()
 	//	・・・・・・・・・.
 	while (1) {
 		printf("\nCommand> ");
-		c = getch();
-		putch(c);
+		c = _getch();
+		_putch(c);
 		c = toupper(c);
 		switch (c) {
 		case 'R':

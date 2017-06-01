@@ -6,17 +6,18 @@ int build_dictionary(char *fname)
 {
 	int i = 0; // 데이터 수
 	char key[100], data[200];
-	FILE *ifp;
-	if ((ifp = fopen(fname, "r")) == NULL) {
+	FILE *ifp = fopen(fname, "r");
+	if (ifp == NULL) {
 		printf("No such file ! \n");
 		exit(1);
 	}
 	while (fscanf(ifp, "%s %s", key, data) == 2) 
 	{ // (key data)를 읽어 해시테이블에 삽입
-		//……………………….
+		hash_insert(key, data);
+		i++;
 	}
 	fclose(ifp);
-	return(i);
+	return (i);
 }
 
 int hash(char *key)
@@ -54,19 +55,21 @@ char * hash_search(char *key)
 
 	while (strlen(hash_table[h].key) != 0)
 	{
+		num_comparison++;
 		if (strcmp(hash_table[h].key, key) == 0)
 		{
-			printf("location = %d", i);
-			return;
+			printf("Hash Value = %d", hash_value);
+			
+			return hash_table[h].key;
 		}
-	}
-	
-	h = (h + 1) % TABLE_SIZE;
+		h = (h + 1) % TABLE_SIZE;
 
-	if (h == hash_value)
-	{
-		printf("fali");
-		return;
+		if (h == hash_value)
+		{
+			printf("fali");
+			return NULL;
+		}
+
 	}
 
 	printf("fail");
@@ -84,6 +87,6 @@ void hash_show()
 {
 	for (int i = 0; i < TABLE_SIZE; i++)
 	{
-		printf("hash_table[i] : ", i);
+		printf("hash_table[%d] : <%s>\n", i, hash_table[i].key);
 	}
 }
