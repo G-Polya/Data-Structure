@@ -11,7 +11,8 @@ int build_dictionary(char *fname)
 		printf("No such file ! \n");
 		exit(1);
 	}
-	while (fscanf(ifp, "%s %s", key, data) == 2) { // (key data)를 읽어 해시테이블에 삽입
+	while (fscanf(ifp, "%s %s", key, data) == 2) 
+	{ // (key data)를 읽어 해시테이블에 삽입
 		//……………………….
 	}
 	fclose(ifp);
@@ -20,42 +21,69 @@ int build_dictionary(char *fname)
 
 int hash(char *key)
 {
-	return (*key % 100);
+	return (transform(key) % TABLE_SIZE);
 }
 
 void hash_insert(char *key, char *data)
 {
-	int h = hash(key);
-	int i = 0;
-
-	while (hash_table[h].key != 0 && (i < 100))
+	int hash_value;
+	int h = hash_value = hash(key);
+	
+	while (strlen(hash_table[h].key) != 0)
 	{
-		if (hash_table[h].key == key)
+		if (strcmp(hash_table[h].key, key) == 0)
 		{
-			strcpy(hash_table[h].data,data);
+			printf("duplication");
 			return;
 		}
-		h = (h + 1) % 100;
-		i++;
+		h = (h + 1) % TABLE_SIZE;
+		if (h == hash_value)
+		{
+			printf("table full");
+			return;
+		}
 	}
-
-	if (hash_table[h].key == 0)
-	{
-		strcpy(hash_table[h].key, key);
-		strcpy(hash_table[h].data, data);
-	}
-
+	strcpy(hash_table[h].key, key);
+	strcpy(hash_table[h].data, data);
 }
 
 char * hash_search(char *key)
 {
-	int h = hash(key);
+	int hash_value;
+	int h = hash_value = hash(key);
 
-	while (hash_table != NULL)
+	while (strlen(hash_table[h].key) != 0)
 	{
-		if (hash_table[h].key == key)
-			return hash_table;
+		if (strcmp(hash_table[h].key, key) == 0)
+		{
+			printf("location = %d", i);
+			return;
+		}
+	}
+	
+	h = (h + 1) % TABLE_SIZE;
+
+	if (h == hash_value)
+	{
+		printf("fali");
+		return;
 	}
 
+	printf("fail");
+}
 
+int transform(char *key)
+{
+	int number = 0;
+	while (*key)
+		number += *key++;
+	return number;
+}
+
+void hash_show()
+{
+	for (int i = 0; i < TABLE_SIZE; i++)
+	{
+		printf("hash_table[i] : ", i);
+	}
 }
