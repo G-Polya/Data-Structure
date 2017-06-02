@@ -25,6 +25,7 @@ int hash(char *key)
 	return (transform(key) % TABLE_SIZE);
 }
 
+//해시테이블에 특정 key를 가지는 data삽입
 void hash_insert(char *key, char *data)
 {
 	int hash_value;
@@ -36,7 +37,8 @@ void hash_insert(char *key, char *data)
 		{
 			printf("duplication");
 			return;
-		}
+		}	//중복
+
 		h = (h + 1) % TABLE_SIZE;
 		if (h == hash_value)
 		{
@@ -44,11 +46,14 @@ void hash_insert(char *key, char *data)
 			return;
 		}
 	}
+
+	//삽입
 	strcpy(hash_table[h].key, key);
 	strcpy(hash_table[h].data, data);
 }
 
-char * hash_search(char *key)
+//특정 key에 해당하는 data 찾기
+char* hash_search(char *key)
 {
 	int hash_value;
 	int h = hash_value = hash(key);
@@ -56,7 +61,7 @@ char * hash_search(char *key)
 	while (strlen(hash_table[h].key) != 0)
 	{
 		num_comparison++;
-		if (strcmp(hash_table[h].key, key) == 0)
+		if (strcmp(hash_table[h].key, key) == 0)	//내가 찾는 key(parameter로 받아온 key)가 해시테이블의 key에 있다면
 		{
 			printf("Hash Value = %d", hash_value);
 			
@@ -77,6 +82,7 @@ char * hash_search(char *key)
 	return NULL;
 }
 
+//문자열인 key를 int형으로 transform
 int transform(char *key)
 {
 	int number = 0;
@@ -85,6 +91,7 @@ int transform(char *key)
 	return number;
 }
 
+//해시테이블을 보여줌
 void hash_show()
 {
 	for (int i = 0; i < TABLE_SIZE; i++)
