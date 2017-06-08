@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "sorting.h"
+#define SWAP(x, y, t) ((t) = (x), (x) = (y), (y) = (t))
 
 void main()
 {
@@ -52,10 +53,13 @@ void insertion_sort(int list[], int n)
 	for (i = 1; i < n; i++)
 	{
 		int next = list[i];
+		print_list(list, 0, n - 1);
 		for (j = i - 1; j >= 0 && next < list[j]; j--)
 		{
+
 			num_compare++;
 			list[j + 1] = list[j];
+			
 		}
 		list[j + 1] = next;
 	}
@@ -64,38 +68,41 @@ void insertion_sort(int list[], int n)
 void quick_sort(int list[], int left, int right)
 {
 	int i, j;
+	
 	if (left < right)
 	{
-		num_compare++;
-		int pivot = partition(list, left, right);
-
-		quick_sort(list, left, pivot - 1);
-		quick_sort(list, pivot + 1, right);
+		int j = partition(list, left, right);
+		
+		quick_sort(list, left, j - 1);
+		
+		quick_sort(list, j + 1, right);
 	}
 }
 
 int partition(int list[], int left, int right)
 {
-	int i = left, j = right + 1;
+	int pivot, temp;
+	int i, j;
+	i = left;
+	j = right + 1;
 	
-	//pivot보다 작은 것과 큰 것으로 나눔
-	int pivot = list[left];
+	pivot = list[left];
+	
 	while (i < j)
 	{
+		
 		while (list[++i] < pivot);
 		while (list[--j] > pivot);
+		
 		if (i < j)
 		{
-			int temp = list[i];
-			list[i] = list[j];
-			list[j] = temp;
+			SWAP(list[i], list[j], temp);
 		}
+		
 	}
-
-	//pivot을 중간(j)에 놓고 인덱스 j를 반환
-	int tmp = list[i];
-	list[i] = list[j];
-	list[j] = tmp;
+	
+	SWAP(list[left], list[j], temp);
+	
 
 	return j;
 }
@@ -103,10 +110,11 @@ int partition(int list[], int left, int right)
 
 void merge_sort(int list[], int left, int right)
 {
+	int mid;
+	
 	if (left < right)
 	{
-		num_compare++;
-		int mid = (left + right) / 2;
+		mid = (left + right) / 2;
 
 		merge_sort(list, left, mid);
 		merge_sort(list, mid + 1, right);
@@ -116,21 +124,37 @@ void merge_sort(int list[], int left, int right)
 
 void merge(int list[], int left, int mid, int right)
 {
-	int i = left, j = mid + 1, k = left;
-	int sorted[sizeof(original)];
+	int i, j, k, n;
+	i = left, j = mid + 1, k = left;
+	
+	int sorted[sizeof(original)] = { 0 };
 
 	while (i <= mid && j <= right)
 	{
-		if (list[i] <= list[j]) sorted[k++] = list[i++];
-		else sorted[k++] = list[j++];
+		if (list[i] <= list[j])
+		{
+			sorted[k++] = list[i++];
+		}
+		else
+		{
+			sorted[k++] = list[j++];		
+		}
+		
 	}
 	if (i > mid)
-		for (int n = j; n <= right; n++)
-			sorted[k++] = list[n];
+	{
+		for (n = j; n <= right; n++)
+		{
+			sorted[k++] = list[n];		
+		}
+	}
 	else
-		for (int n = i; n < mid; n++)
+	{
+		for (n = i; n <= mid; n++)
+		{
 			sorted[k++] = list[n];
-
-	for (int n = left; n <= right; n++)
+		}
+	}
+	for ( n = left; n <= right; n++)
 		list[n] = sorted[n];
 }
